@@ -6,7 +6,10 @@ export default {
   ],
   theme: {
     extend: {
-      screens: { "2xl": "1400px", },
+      screens: { 
+        "2xl": "1400px",
+        "xs": "375px" 
+      },
       colors: {
         blueBtn: "#1E9EE5",
         successGreen: "#74DA7F",
