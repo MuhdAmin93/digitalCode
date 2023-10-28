@@ -198,17 +198,6 @@ export default function App() {
           </div>
         </form>
       </section>
-      <section
-        id="comment"
-        className="flex justify-center items-center mt-20 max-[378px]:mt-[1050px] max-sm:mt-[700px] max-md:mt-[500px] max-lg:mt-[400px] max-lg:flex-wrap"
-      >
-        <form className="w-[600px] border border-black rounded-xl flex items-center max-lg:w-[350px] ">
-          <div className="mx-auto my-5 flex justify-center flex-col max-lg:flex-wrap max-lg:mx-auto max-lg:flex-1">
-            <p> name: {saveName}</p>
-            <p> Feedback: {saveFeedback}</p>
-          </div>
-        </form>
-      </section>
     </main>
   );
 }
