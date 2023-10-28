@@ -34,12 +34,12 @@ export default function App() {
     }
   }, []);
 
-  try {
-    const response = axios.get("http://127.0.0.1:8000/predict/{text}");
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+  // try {
+  //   const response = axios.get("http://127.0.0.1:8000/predict/{text}");
+  //   console.log(response);
+  // } catch (error) {
+  //   console.error(error);
+  // }
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
