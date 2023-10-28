@@ -2,9 +2,10 @@ import Scanning from "./assets/scanning.png";
 import { useState, useEffect } from "react";
 import Check from "./assets/check.png";
 import Warning from "./assets/warning.png";
+import axios from "axios";
 
 export default function App() {
-  const [scanState, setScanState] = useState(false);
+  const [scanState, setScanState] = useState("scanning");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [name, setName] = useState(" ");
@@ -13,6 +14,7 @@ export default function App() {
   const [saveNumber, setSaveNumber] = useState("");
   const [feedback, setFeedback] = useState("");
   const [saveFeedback, setSaveFeedback] = useState("");
+  const [data, setData] = useState("");
 
   useEffect(() => {
     const savedName = localStorage.getItem("saveName");
@@ -31,6 +33,13 @@ export default function App() {
       setFeedback(savedFeedback);
     }
   }, []);
+
+  try {
+    const response = axios.get("http://127.0.0.1:8000/predict/{text}");
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -81,7 +90,7 @@ export default function App() {
     <main className="px-auto py-20 max-w-screen bg-[#e5e5e5] max-lg:h-full overflow-y-scroll max-lg:overflow-x-hidden">
       <section className="flex justify-between items-center h-screen w-full px-20 py-10 max-lg:flex-wrap max-lg:px-10">
         <div className="flex gap-10">
-          <p className="w-[80%] font-regular text-[#2b2d42] text-[30px] leading-[60px] max-md:leading-[40px] max-lg:w-full max-lg:text-center">
+          <p className="w-full font-regular text-[#2b2d42] text-[30px] leading-[60px] max-md:leading-[40px] max-lg:w-full max-lg:text-center">
             Пожалуйста, проявите бдительность! Если вы заметили предметы
             содержащие оружие, пожалуйста, сфотографируйте их, и загрузите в
             наше приложение. Для обеспечения безопасности важно внимание
@@ -110,7 +119,7 @@ export default function App() {
               src={Scanning}
               alt=""
               className={`${
-                scanState === false ? "" : "hidden"
+                scanState === "scanning" ? "" : "hidden"
               } object-contain h-[400px] w-[300px]`}
             />
           )}
@@ -119,7 +128,7 @@ export default function App() {
             src={Check}
             alt=""
             className={`${
-              scanState === true && !selectedImage && !selectedVideo
+              scanState === "check" && selectedImage && selectedVideo
                 ? ""
                 : "hidden"
             } object-contain h-[400px] w-[300px]`}
@@ -129,7 +138,7 @@ export default function App() {
             src={Warning}
             alt=""
             className={`${
-              scanState === true && !selectedImage && !selectedVideo
+              scanState === "warning" && !selectedImage && !selectedVideo
                 ? ""
                 : "hidden"
             } object-contain h-[400px] w-[300px]`}
@@ -141,15 +150,22 @@ export default function App() {
             accept="image/*, video/*"
             onChange={handleFileChange}
           />
-          <button
-            className="bg-blueBtn text-white py-5 px-10 rounded-xl mt-5 w-[300px] text-[30px]"
-            onClick={handleScan}
-          >
-            сканировать
-          </button>
+          <p className="text-red-600">Оружие обнаружено: Снайпер</p>
+          <div className="flex justify-between gap-3 max-lg:flex-col">
+            <button
+              className="bg-blueBtn text-white py-5 px-10 rounded-xl mt-5 w-[300px] text-[30px]"
+              onClick={handleScan}
+            >
+              сканировать
+            </button>
+            <button className="bg-[#25a18e] text-white py-5 px-10 rounded-xl mt-5 w-[300px] text-[30px]">
+              Загрузить
+            </button>
+          </div>
         </div>
       </section>
       <section className="flex justify-center items-center mt-20 max-[378px]:mt-[1050px] max-sm:mt-[700px] max-md:mt-[500px] max-lg:mt-[400px] max-lg:flex-wrap">
+        {/* <h1 className="font">Пожалуйста, напишите отзыв</h1> */}
         <form className="w-[600px] border border-black rounded-xl flex items-center max-lg:w-[350px] ">
           <div className="mx-auto my-5 flex justify-center flex-col max-lg:flex-wrap max-lg:mx-auto max-lg:flex-1">
             <input
