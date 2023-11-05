@@ -4,25 +4,32 @@ import Check from "./assets/check.png";
 import Warning from "./assets/warning.png";
 import axios from "axios";
 import { FeedBackArea } from "./components/feedbackArea";
-
+import { useList } from "./stateProvider/stateprovider";
 
 export default function App() {
   const [scanState, setScanState] = useState("scanning");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [name, setName] = useState(" ");
-  const [saveName, setSaveName] = useState(" ");
-  const [number, setNumber] = useState("");
-  const [saveNumber, setSaveNumber] = useState("");
-  const [feedback, setFeedback] = useState("");
-  const [saveFeedback, setSaveFeedback] = useState("");
+  const {
+    name,
+    setName,
+    number,
+    setNumber,
+    feedback,
+    setFeedback,
+    savedName,
+    savedFeedback,
+    savedNumber,
+    saveName,
+    setSaveName,
+    saveNumber,
+    setSaveNumber,
+    saveFeedback,
+    setSaveFeedback
+  } = useList();
   const [data, setData] = useState("");
 
   useEffect(() => {
-    const savedName = localStorage.getItem("saveName");
-    const savedNumber = localStorage.getItem("saveNumber");
-    const savedFeedback = localStorage.getItem("saveFeedback");
-
     if (savedName) {
       setName(savedName);
     }
@@ -48,7 +55,6 @@ export default function App() {
 
     if (selectedFile) {
       if (selectedFile.type.startsWith("image/")) {
-        console.log("trudy!!");
         const reader = new FileReader();
         reader.onload = () => {
           setSelectedImage(reader.result);
@@ -59,7 +65,6 @@ export default function App() {
       }
     }
   };
-
 
   const handleChangeName = (e) => {
     setName(e.target.value);

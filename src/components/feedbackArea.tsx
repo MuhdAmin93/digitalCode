@@ -1,14 +1,18 @@
 import { FaUserCircle } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useList } from "../stateProvider/stateprovider";
 
 export const FeedBackArea = () => {
-  const [name, setName] = useState("");
-  const [feedback, setFeedback] = useState("");
+  const {
+    name,
+    setName,
+    feedback,
+    setFeedback,
+    savedName,
+    savedFeedback
+  } = useList();
 
   useEffect(() => {
-    const savedName = localStorage.getItem("saveName");
-    const savedFeedback = localStorage.getItem("saveFeedback");
-
     if (savedName) {
       setName(savedName);
     }
