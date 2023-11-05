@@ -4,6 +4,7 @@ import Check from "./assets/check.png";
 import Warning from "./assets/warning.png";
 import axios from "axios";
 
+
 export default function App() {
   const [scanState, setScanState] = useState("scanning");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -46,6 +47,7 @@ export default function App() {
 
     if (selectedFile) {
       if (selectedFile.type.startsWith("image/")) {
+        console.log("trudy!!");
         const reader = new FileReader();
         reader.onload = () => {
           setSelectedImage(reader.result);
@@ -56,6 +58,7 @@ export default function App() {
       }
     }
   };
+
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -92,10 +95,11 @@ export default function App() {
         <div className="flex gap-10">
           <p className="w-full font-regular text-[#2b2d42] text-[30px] leading-[60px] max-md:leading-[40px] max-lg:w-full max-lg:text-center">
             Пожалуйста, проявите бдительность! Если вы заметили предметы
-            содержащие оружие, пожалуйста, сфотографируйте их, и загрузите в
-            наше приложение. Для обеспечения безопасности важно внимание
-            каждого. Вы поможете обеспечить нам безопасность! Если приложение
-            обнаружило оружие, пожалуйста сообщите по номеру 102!
+            содержащие оружие, пожалуйста, сфотографируйте их, и загрузите
+            в наше приложение. Для обеспечения безопасности важно внимание
+            каждого. Вы поможете обеспечить нам безопасность! Если
+            приложение обнаружило оружие, пожалуйста сообщите по номеру
+            102!
           </p>
         </div>
         <div className="flex flex-col items-center max-lg:mx-auto max-lg:justify-center max-lg:flex-1 max-md:py-20">
@@ -154,8 +158,7 @@ export default function App() {
           <div className="flex justify-between gap-3 max-lg:flex-col">
             <button
               className="bg-blueBtn text-white py-5 px-10 rounded-xl mt-5 w-[300px] text-[30px]"
-              onClick={handleScan}
-            >
+              onClick={handleScan}>
               сканировать
             </button>
             <button className="bg-[#25a18e] text-white py-5 px-10 rounded-xl mt-5 w-[300px] text-[30px]">
@@ -191,8 +194,7 @@ export default function App() {
             />
             <button
               className="bg-blueBtn text-white p-4 rounded-xl my-3  max-lg:w-[300px] max-lg:mx-4 text-[30px]"
-              onClick={reply}
-            >
+              onClick={reply}>
               Submit
             </button>
           </div>
