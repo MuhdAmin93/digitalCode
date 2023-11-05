@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Check from "./assets/check.png";
 import Warning from "./assets/warning.png";
 import axios from "axios";
+import { FeedBackArea } from "./components/feedbackArea";
 
 
 export default function App() {
@@ -200,6 +201,7 @@ export default function App() {
           </div>
         </form>
       </section>
+      <FeedBackArea />
     </main>
   );
 }
