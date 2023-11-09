@@ -23,13 +23,14 @@ export const FeedBackArea = () => {
   }, []);
 
   return (
-    <section>
-      <div className="border-y border-black mt-6 mx-3 pl-3 pb-3">
-        <h1 className="font-semibold">
+    <section className="mt-5 mx-6 text-left ">
+      <h1 className="text-4xl font-bold border-b-2 text-center">Comments</h1>
+      <div className="border-b mt-6 pb-3 w-[60%] mx-auto">
+        <h1 className="font-semibold text-lg">
           <FaUserCircle className="inline -mt-1 mr-1" />
           {`${name ? name : `Enitan Akinfenwa`}`}
         </h1>
-        <p className="w-[60%] mt-3">
+        <p className=" mt-3">
           {`${
             feedback
               ? feedback
