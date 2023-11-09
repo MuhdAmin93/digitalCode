@@ -1,3 +1,6 @@
+import { FeedBackArea } from "./components/feedbackArea";
+import { GrDownload } from "react-icons/gr";
+
 export const App = () => {
   return (
     <main className="py-2">
@@ -8,11 +11,18 @@ export const App = () => {
 
         <div className="w-fit flex flex-row mt-5">
           <p className="text-[2.5rem]">Вставьте ваш API</p>
-          <div className="border border-x-4 border-[#74da7f] rounded-2xl py-4 px-2 mx-2 text-[1.25rem]">
-            <input className="outline-none" type="text" placeholder="rtps....текстовое поле ссылки" />
+          <div className="border border-x-4 border-[#74da7f] rounded-2xl py-4 px-2 ml-2 text-[1.25rem]">
+            <input
+              className="outline-none"
+              type="text"
+              placeholder="rtps....текстовое поле ссылки"
+            />
           </div>
-          <button className="bg-[#74da7f] px-2 rounded-2xl text-[2.25rem]">
+          <button className="bg-[#74da7f] px-2 rounded-2xl text-[2.25rem] ml-2">
             Добавить
+          </button>
+          <button className="bg-[#74da7f] px-2 rounded-2xl text-[2.25rem] ml-2 w-[5rem]">
+            <GrDownload className="mx-auto" />
           </button>
         </div>
 
@@ -26,17 +36,7 @@ export const App = () => {
         укажите время и детали ошибки.
       </p>
 
-      <center>
-        <section className="flex flex-row w-[56.5rem] mt-5">
-          <div className="w-[33.625rem] h-[13.5rem] bg-gray-300 flex justify-center items-center rounded-2xl text-[2.25rem]">
-            comment section
-          </div>
-
-          <div className="bg-gray-300 flex justify-center items-center rounded-2xl text-[#ec4242] text[1.25rem] h-[13.5rem] w-[22.375rem] ml-1">
-            выберете файл для загрузки
-          </div>
-        </section>
-      </center>
+      <FeedBackArea />
     </main>
   );
 };
